@@ -1,0 +1,99 @@
+
+.logins {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+.login {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.login input {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.login button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+#sideMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #333;
+    padding: 20px;
+}
+#sideMenu a {
+    color: #fff;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none; /* Adding this line to remove underlines from links */
+}
+
+.shoplist {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+#shoppingList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#shoppingList li {
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.add-item {
+    margin-top: 20px;
+}
+
+.add-item input[type="text"] {
+    padding: 8px;
+    width: calc(100% - 70px);
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+}
+
+.add-item button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
