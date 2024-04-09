@@ -97,3 +97,25 @@ h1 {
     border-radius: 0 5px 5px 0;
     cursor: pointer;
 }
+
+.preferenceContainer {
+    display: flex;
+    height: 90vh;
+    border: 5px solid black;
+    flex-direction:column;
+    justify-content:space-evenly;
+}
+
+.editBox {
+    width:600px;
+    height: 100px;
+    max-width: 600px;
+    max-height: 200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size:2em;
+    text-align:center;
+}
