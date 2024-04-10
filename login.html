@@ -5,29 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="styles.css" rel="stylesheet" type="text/css">
     <title>Login Page</title>
-    
+
 </head>
-<body class="logins">
-    <div id="sideMenu">
-        <br>
-        <a href="login.html">User Profile</a>
-        <a href="preference.html">Preferences Management</a>
-        <a href="shoppinglist.html">Shopping List</a>
-        <a href="#">Food Database</a>
-        <a href="#">Statistics</a>
-        <a href="#">Logout</a>
-    </div>
-    <button id="menuButton" style="position: fixed; top: 10px; left: 10px; background-color: #333; color: #fff; border: none; cursor: pointer;">
-        &#9776;
-    </button>
-    
-    <div class="login">
-        <form action="proceseaza.php" method="post">
-            <input type="email" name="email" placeholder="user_email" required />
-            <input type="password" name="password" placeholder="user_password" required />
-            <button type="submit" name="loginbutton">Login</button>
-        </form>
-    </div>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+    <main class="logins">
+        <div id="sideMenu">
+            <br>
+            <a href="login.html">User Profile</a>
+            <a href="preference.html">Preferences Management</a>
+            <a href="shoppinglist.html">Shopping List</a>
+            <a href="foodDatabase.html">Food Database</a>
+            <a href="#">Statistics</a>
+            <a href="#">Logout</a>
+        </div>
+        <button id="menuButton" style="position: fixed; top: 10px; left: 10px; background-color: #333; color: #fff; border: none; cursor: pointer;">
+            &#9776;
+        </button>
+
+        <div class="login">
+            <form action="proceseaza.php" method="post">
+                <input type="email" name="email" placeholder="user_email" required />
+                <input type="password" name="password" placeholder="user_password" required />
+                <button type="submit" name="loginbutton">Login</button>
+            </form>
+        </div>
+    </main>
     <script src="script.js"></script>
 
 </body>

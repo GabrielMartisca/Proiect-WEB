@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+}
+
+.logh {
+    display: block;
+}
 
 .logins {
     display: flex;
@@ -6,28 +13,32 @@
     height: 100vh;
     background-color: #f2f2f2;
 }
+
 .login {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
     border-radius: 5px;
     background-color: #fff;
 }
-.login input {
-    margin-bottom: 10px;
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-}
-.login button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-}
+
+    .login input {
+        margin-bottom: 10px;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .login button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #212121;
+        color: #fff;
+        cursor: pointer;
+    }
+
 #sideMenu {
     display: none;
     position: fixed;
@@ -35,15 +46,16 @@
     left: 0;
     height: 100%;
     width: 250px;
-    background-color: #333;
+    background-color: #ff0000;
     padding: 20px;
 }
-#sideMenu a {
-    color: #fff;
-    display: block;
-    margin-bottom: 10px;
-    text-decoration: none; /* Adding this line to remove underlines from links */
-}
+
+    #sideMenu a {
+        color: #fff;
+        display: block;
+        margin-bottom: 10px;
+        text-decoration: none; /* Adding this line to remove underlines from links */
+    }
 
 .shoplist {
     font-family: Arial, sans-serif;
@@ -53,7 +65,7 @@
 }
 
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -61,53 +73,131 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    color: #333;
-    text-align: center;
+.shopping-list-container {
+    margin-bottom: 20px;
 }
 
 #shoppingList {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
-#shoppingList li {
-    padding: 10px;
-    margin-bottom: 5px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-}
+    #shoppingList li {
+        position: relative; /* Make the position relative */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        margin-bottom: 5px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+    }
 
-.add-item {
-    margin-top: 20px;
-}
-
+/* Remove margin from input */
 .add-item input[type="text"] {
     padding: 8px;
     width: calc(100% - 70px);
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     border: 1px solid #ccc;
+    margin-right: 5px; /* Add margin to separate input from buttons */
 }
 
 .add-item button {
     padding: 8px 15px;
     border: none;
-    background-color: #007bff;
+    background-color: #333;
     color: #fff;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+/* Style the + and - buttons */
+.item-buttons {
+    display: flex;
+    align-items: center;
+}
+
+    .item-buttons button {
+        padding: 5px;
+        margin-left: 5px; /* Add margin between buttons */
+        border: none;
+        background-color: #333;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* Change flex direction to column */
+    align-items: center; /* Align buttons to the right */
+}
+
+    .action-buttons button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #333;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px; /* Add margin between buttons */
+    }
+
+#sideMenu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #212121;
+    padding: 20px;
+    z-index: 9999; /* Ensure the side menu is on top */
+    overflow-y: auto; /* Allow scrolling if menu content exceeds viewport height */
+}
+
+    #sideMenu a {
+        color: #fff;
+        display: block;
+        margin-bottom: 10px;
+        text-decoration: none;
+    }
+
+#menuButton {
+    z-index: 10000; /* Ensure the menu button is on top */
+}
+
+.spinner button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .spinner button:hover {
+        background-color: #0056b3; /* Darken the background color on hover */
+    }
+
+.spinner input[type="number"]::-webkit-inner-spin-button,
+.spinner input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .preferenceContainer {
     display: flex;
     height: 90vh;
-    border: 5px solid black;
-    flex-direction:column;
-    justify-content:space-evenly;
+    border: 5px red;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .editBox {
-    width:600px;
+    width: 600px;
     height: 100px;
     max-width: 600px;
     max-height: 200px;
@@ -116,6 +206,85 @@ h1 {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size:2em;
-    text-align:center;
+    font-size: 2em;
+    text-align: center;
+}
+
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.db {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+    header h1 {
+        font-size: 24px;
+    }
+
+.dbmain {
+    padding: 20px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.product {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 250px;
+}
+
+    .product img {
+        max-width: 100%;
+    }
+
+    .product h2 {
+        margin-top: 10px;
+    }
+
+    .product p {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .product button {
+        background-color: #333;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+    }
+
+        .product button:hover {
+            background-color: black;
+        }
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
