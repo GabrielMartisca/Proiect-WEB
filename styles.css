@@ -191,15 +191,15 @@ body {
 .preferenceContainer {
     display: flex;
     height: 90vh;
-    border: 5px red;
+    border: 5px solid black;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .editBox {
-    width: 600px;
+    width: 60%;
     height: 100px;
-    max-width: 600px;
+    max-width: 800px;
     max-height: 200px;
     margin: 20px auto;
     padding: 20px;
@@ -210,6 +210,26 @@ body {
     text-align: center;
 }
 
+#editBox1 {
+    background-image: url('allergies.png');
+    color: black; /* Text color for 'Edit Alergens' */
+    background-size: cover;
+    background-position: center;
+}
+
+#editBox2 {
+    background-image: url('regime.jpg');
+    color: gray;
+    background-size: cover;
+    background-position: center;
+}
+
+#editBox3 {
+    background-image: url('favFoods.jpg');
+    color: whitesmoke;
+    background-size: cover;
+    background-position: center;
+}
 
 
 
