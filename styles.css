@@ -6,6 +6,57 @@ body {
     display: block;
 }
 
+.landingPage {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    grid-template-rows: auto; /* Auto rows */
+    height: 90vh; /* Full height of the viewport */
+}
+
+.logo {
+    grid-column: 1 / 2; /* Span the first column */
+    grid-row: 1; /* First row */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#logoID {
+    width: 60%;
+}
+
+.lrContainer {
+    grid-column: 2 / 3; /* Span the second column */
+    grid-row: 1; /* First row */
+    display: flex;
+    justify-content: space-around; /* Distribute buttons evenly */
+    flex-direction: column;
+    align-items: center;
+}
+
+.lrButton {
+    grid-column: 2 / 3; /* Span the second column */
+    grid-row: 1; /* First row */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+    .lrButton a {
+        display: block;
+        padding: 10px 20px;
+        background-color: green;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .lrButton a:hover {
+        background-color: darkgreen;
+    }
+
+
 .logins {
     display: flex;
     justify-content: center;
@@ -191,12 +242,12 @@ body {
 .preferenceContainer {
     display: flex;
     height: 90vh;
-    border: 5px solid black;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .editBox {
+    position: relative;
     width: 60%;
     height: 100px;
     max-width: 800px;
@@ -208,25 +259,42 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-size: 2em;
     text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: white; /* Text color */
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
+    overflow: hidden;
 }
+
+    .editBox::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0); /* Transparent by default */
+        transition: background-color 0.5s ease; /* Smooth transition effect */
+    }
+
+    .editBox:hover::before {
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    }
 
 #editBox1 {
     background-image: url('allergies.png');
-    color: black; /* Text color for 'Edit Alergens' */
     background-size: cover;
     background-position: center;
 }
 
 #editBox2 {
     background-image: url('regime.jpg');
-    color: gray;
     background-size: cover;
     background-position: center;
 }
 
 #editBox3 {
     background-image: url('favFoods.jpg');
-    color: whitesmoke;
     background-size: cover;
     background-position: center;
 }
