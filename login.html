@@ -21,16 +21,18 @@
             <a href="#">Statistics</a>
             <a href="landingPage.html">Logout</a>
         </div>
-        <button id="menuButton" style="position: fixed; top: 10px; left: 10px; background-color: #333; color: #fff; border: none; cursor: pointer;">
+        <button id="menuButton" >
             &#9776;
         </button>
-
-        <div class="login">
-            <form action="proceseaza.php" method="post">
-                <input type="email" name="email" placeholder="user_email" required />
-                <input type="password" name="password" placeholder="user_password" required />
-                <button type="submit" name="loginbutton">Login</button>
-            </form>
+        <div id="logoLogin">
+            <img src="logo.png" alt="logo" width="320px"class="loginLogo">
+            <div class="login">
+                <form action="proceseaza.php" method="post">
+                    <input type="email" name="email" placeholder="user_email" required />
+                    <input type="password" name="password" placeholder="user_password" required />
+                    <button type="submit" name="loginbutton">Login</button>
+                </form>
+            </div>
         </div>
     </main>
     <script src="script.js"></script>
