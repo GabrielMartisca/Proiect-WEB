@@ -24,6 +24,9 @@ body {
     width: 60%;
 }
 
+.loginLogo{
+    position: center;
+}
 .lrContainer {
     grid-column: 2 / 3; /* Span the second column */
     grid-row: 1; /* First row */
@@ -89,25 +92,7 @@ body {
         color: #fff;
         cursor: pointer;
     }
-
-#sideMenu {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: #ff0000;
-    padding: 20px;
-}
-
-    #sideMenu a {
-        color: #fff;
-        display: block;
-        margin-bottom: 10px;
-        text-decoration: none; /* Adding this line to remove underlines from links */
-    }
-
+    
 .shoplist {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -188,35 +173,45 @@ body {
     .action-buttons button {
         padding: 10px 20px;
         border: none;
-        background-color: #333;
+        background-color: #212121;
         color: #fff;
         border-radius: 5px;
         cursor: pointer;
         margin-bottom: 10px; /* Add margin between buttons */
     }
 
-#sideMenu {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 250px;
-    background-color: #212121;
-    padding: 20px;
-    z-index: 9999; /* Ensure the side menu is on top */
-    overflow-y: auto; /* Allow scrolling if menu content exceeds viewport height */
-}
 
-    #sideMenu a {
-        color: #fff;
-        display: block;
-        margin-bottom: 10px;
-        text-decoration: none;
+    #sideMenu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 250px;
+        background-color: #212121;
+        padding: 20px;
+        z-index: 9999; /* Ensure the side menu is on top */
+        overflow-y: auto; /* Allow scrolling if menu content exceeds viewport height */
     }
+    
+        #sideMenu a {
+            color: #fff;
+            display: block;
+            margin-bottom: 10px;
+            text-decoration: none;
+            background-color: #212121;
+        }
 
 #menuButton {
-    z-index: 10000; /* Ensure the menu button is on top */
+    z-index: 10000;/* Ensure the menu button is on top */ 
+    background-color: transparent;
+    color:#212121;
+    position: fixed;
+    top: 10px; 
+    left: 10px; 
+    color: #fff; 
+    border: none; 
+    cursor: pointer;
 }
 
 .spinner button {
@@ -316,6 +311,7 @@ header {
     color: #fff;
     padding: 20px;
     text-align: center;
+    z-index: 8888;
 }
 
     header h1 {
@@ -375,4 +371,38 @@ footer {
     color: #fff;
     padding: 20px;
     text-align: center;
+}
+
+.spinner input[type="number"] {
+    width: 50px; /* Default width */
+    padding: 5px; /* Default padding */
+    text-align: center; /* Default text alignment */
+    font-size: 14px; /* Default font size */
+}
+
+/* Media query for screens smaller than 373 pixels */
+@media screen and (max-width: 373px) {
+    .spinner input[type="number"] {
+        width: 30px; /* Adjusted width */
+        padding: 3px; /* Adjusted padding */
+        font-size: 12px; /* Adjusted font size */
+    }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+    .spinner input[type="number"] {
+        width: 15vw; /* Adjusted width relative to viewport width */
+        padding: 2vw; /* Adjusted padding relative to viewport width */
+        font-size: 3vw; /* Adjusted font size relative to viewport width */
+    }
+}
+
+/* Further adjustments for very small screens */
+@media screen and (max-width: 320px) {
+    .spinner input[type="number"] {
+        width: 25px; /* Further adjusted width */
+        padding: 2px; /* Further adjusted padding */
+        font-size: 10px; /* Further adjusted font size */
+    }
 }
