@@ -47,7 +47,12 @@ body {
 .image-container button:hover {
     background-color: black;
 }
-
+.actionButton{
+    background-color: #333;
+}
+.actionButton:hover{
+    background-color: black;
+}
 
 .profilePreference {
     grid-column: 1 / 2;
@@ -94,7 +99,7 @@ body {
     .lrButton a {
         display: block;
         padding: 1em 4em;
-        background-color: green;
+        background-color: #333;
         color: white;
         text-decoration: none;
         border-radius: 5px;
@@ -102,9 +107,15 @@ body {
     }
 
     .lrButton a:hover {
-        background-color: darkgreen;
+        background-color: black;
     }
+.addItem{
+    background-color: #333;
+}
 
+.addItem:hover{
+    background-color: black;
+}
 
 .logins {
     display: flex;
@@ -271,7 +282,7 @@ body {
 }
 
     .spinner button:hover {
-        background-color: #0056b3; /* Darken the background color on hover */
+        background-color: black; /* Darken the background color on hover */
     }
 
 .spinner input[type="number"]::-webkit-inner-spin-button,
