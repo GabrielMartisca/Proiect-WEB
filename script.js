@@ -20,6 +20,19 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('menuButton').addEventListener('click', toggleMenu);
 });
 
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Redirect to userProfile.html
+    window.location.href = 'userProfile.html';
+});
+document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Redirect to userProfile.html
+    window.location.href = 'userProfile.html';
+});
+
 function addItem() {
     var itemInput = document.getElementById('itemInput');
     var itemName = itemInput.value.trim();
