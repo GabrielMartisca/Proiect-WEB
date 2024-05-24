@@ -1,3 +1,8 @@
+<?php
+if(!isset($_COOKIE["loggedin"])&&!isset($_COOKIE["loggedindont"])){
+	header("Location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,14 +18,17 @@
     </header>
 
     <main class="dbmain">
-        <div id="sideMenu">
+    <div id="sideMenu">
             <br>
-            <a href="userProfile.html">User Profile</a>
-            <a href="preference.html">Preferences Management</a>
-            <a href="shoppinglist.html">Shopping List</a>
-            <a href="foodDatabase.html">Food Database</a>
-            <a href="statistics.html">Statistics</a>
-            <a href="landingPage.html">Logout</a>
+            <a href="userProfile.php">User Profile</a>
+            <a href="preference.php">Preferences Management</a>
+            <a href="shoppinglist.php">Shopping List</a>
+            <a href="foodDatabase.php">Food Database</a>
+            <a href="statistics.php">Statistics</a>
+            <a href="#" id="logoutLink">Logout</a>
+            <form id="logoutForm" action="logout.php" method="post">
+                <input type="hidden" name="logoutbutton" value="1">
+            </form>
         </div>
         <button id="menuButton" >
             &#9776;
@@ -120,6 +128,12 @@
     </main>
 
     <script src="script.js"></script>
+    <script>
+        document.getElementById('logoutLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('logoutForm').submit();
+});
+    </script>
 
 </body>
 </html>

@@ -1,7 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Poiret+One|Lobster|Anton|Shadows+Into+Light|Open+Sans|Roboto|Orbitron|Oswald|Raleway|Montserrat|Roboto+Slab|Indie+Flower|Fjalla+One|Bree+Serif|Pacifico|Abril+Fatface);
+
 body {
     margin: 0;
 }
 
+#logoutForm {
+    display: none;
+}
+
+body, header {
+font-family: 'Bree Serif', serif;
+}
 .logh {
     display: block;
 }
@@ -155,7 +164,6 @@ body {
     }
     
 .shoplist {
-    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -362,9 +370,7 @@ body {
     box-sizing: border-box;
 }
 
-.db {
-    font-family: Arial, sans-serif;
-}
+
 
 header {
     background-color: #333;
@@ -508,4 +514,22 @@ footer {
 .stats-item li {
     margin-bottom: 5px;
     color: #777;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+#remember{
+    justify-self: flex-start;
+}
+
+
+
+.remember-me label {
+    font-size: 14px;
+    color: #333;
 }

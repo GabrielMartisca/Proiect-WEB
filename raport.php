@@ -1,3 +1,8 @@
+<?php
+if(!isset($_COOKIE["loggedin"])&&!isset($_COOKIE["loggedindont"])){
+	header("Location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
     <head>

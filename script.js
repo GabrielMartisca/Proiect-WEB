@@ -20,18 +20,18 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('menuButton').addEventListener('click', toggleMenu);
 });
 
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+// document.getElementById('registerForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent default form submission
 
-    // Redirect to userProfile.html
-    window.location.href = 'userProfile.html';
-});
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
+//     // Redirect to userProfile.html
+//     window.location.href = 'userProfile.html';
+// });
+// document.getElementById('registerForm').addEventListener('submit', function(event) {
+//     event.preventDefault(); // Prevent default form submission
 
-    // Redirect to userProfile.html
-    window.location.href = 'userProfile.html';
-});
+//     // Redirect to userProfile.html
+//     window.location.href = 'userProfile.html';
+// });
 
 function addItem() {
     var itemInput = document.getElementById('itemInput');
@@ -92,3 +92,8 @@ function addItem() {
         alert('Please enter an item.');
     }
 }
+
+document.getElementById('logoutLink').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('logoutForm').submit();
+});
