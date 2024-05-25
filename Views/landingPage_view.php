@@ -23,7 +23,7 @@
             </div>
 
             <div class="lrButton">
-            <a href="../Controllers/register_controller.html"> Register </a>
+            <a href="../Controllers/register_controller.php"> Register </a>
             </div>
         </div>
     </div>
