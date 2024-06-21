@@ -15,7 +15,6 @@ function sendForgotMail(){
     $subject = "Password Reset Code";
     $message = "Your password reset code is: " . $randomNumber;
     
-    // Sender and recipient
     $senderEmail = "noreply@CuPo.com"; 
     $recipientEmail = $_POST['email'];
     $_SESSION['email'] = $recipientEmail;

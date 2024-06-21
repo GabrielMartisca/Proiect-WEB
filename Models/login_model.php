@@ -8,14 +8,23 @@ function verifyLogin() {
 
     $userModel = new UserModel();
     $user = $userModel->getUserByEmail($email);
-
+    $_SESSION['username']=$user['username'];
     if ($user && password_verify($pass, $user['password'])) {
         $username = $user['username'];
+        $userId=(string)$user['userID'];
 
         if ($check == "on") {
-            setcookie("loggedin", $username, time() + (86400 * 30),"/");
+            if (setcookie("loggedin", $userId, time() + (86400 * 30), "/")) {
+                error_log("Cookie 'loggedin' set successfully with userId: $userId");
+            } else {
+                error_log("Failed to set cookie 'loggedin' with userId: $userId");
+            }
         } else {
-            setcookie("loggedindont", $username,0,"/");
+            if (setcookie("loggedindont", $userId, 0, "/")) {
+                error_log("Cookie 'loggedindont' set successfully with username: $username");
+            } else {
+                error_log("Failed to set cookie 'loggedindont' with username: $username");
+            }
         }
         //header("Location: ../views/user_profile.php");
         header("Location: ../Controllers/login_controller.php");

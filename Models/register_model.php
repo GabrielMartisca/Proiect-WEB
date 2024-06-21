@@ -23,7 +23,7 @@ function verifyRegister(){
         } else {
             $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO students (username, email, password) VALUES (?, ?, ?)";
+            $query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
             $stmt = $userModel->mysql->prepare($query);
             $stmt->bind_param("sss", $username, $email, $hashedPass);
 

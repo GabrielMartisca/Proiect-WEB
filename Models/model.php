@@ -7,7 +7,7 @@ class UserModel {
             'localhost', // server location (here, local machine)
             'root',       // username
             '',           // password (careful, in plain text!)
-            'users'       // database
+            'cupo'       // database
         );
 
         if (mysqli_connect_errno()) {
@@ -16,7 +16,7 @@ class UserModel {
     }
 
     public function getUserByEmail($email) {
-        $query = "SELECT username, password FROM students WHERE email = ?";
+        $query = "SELECT * FROM users WHERE email =?";
         $stmt = $this->mysql->prepare($query);
         $stmt->bind_param("s", $email);
         $stmt->execute();

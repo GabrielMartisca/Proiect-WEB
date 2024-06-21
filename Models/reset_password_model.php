@@ -20,7 +20,7 @@ function changePassword(){
         $userModel=new UserModel();
     
         
-        $query = "UPDATE students set password=? WHERE email= ?";
+        $query = "UPDATE users set password=? WHERE email= ?";
         $stmt=$userModel->mysql->prepare($query);
         $stmt->bind_param("ss",$hashedPassword,$email);
         if(!$stmt->execute()){
