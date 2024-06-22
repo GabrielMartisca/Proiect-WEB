@@ -810,7 +810,7 @@ footer {
 
 /* Action button */
 .actionButton {
-    background-color: #4CAF50;
+    background-color: #333;
     color: white;
     padding: 15px 20px;
     border: none;
@@ -821,5 +821,5 @@ footer {
 }
 
 .actionButton:hover {
-    background-color: #45a049;
+    background-color: black;
 }
