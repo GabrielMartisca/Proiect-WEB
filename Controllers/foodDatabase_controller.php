@@ -73,8 +73,10 @@ class ShoppingListController {
     private function getLists() {
         $userID = $_GET['userID'];
         $lists = $this->model->getLists($userID);
+        error_log("Lists before JSON encode: " . print_r($lists, true));
         echo json_encode($lists);
     }
+    
 
     private function addItem() {
         $data = json_decode(file_get_contents('php://input'), true);
@@ -93,7 +95,6 @@ class ShoppingListController {
     }
 
     private function showDefault() {
-        // Default action
     }
 }
 

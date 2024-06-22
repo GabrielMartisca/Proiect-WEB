@@ -30,10 +30,19 @@ class ShoppingListController {
                         $userID = $data['userID'];
                         $this->shoppingListModel->deleteShoppingListsByUser($userID);
                         break;
-                    case 'deleteSingle':
-                        $listID = $data['listID'];
-                        $result = $this->shoppingListModel->deleteShoppingList($listID);
-                        echo json_encode(['success' => $result]);
+                  
+                    case 'addItem':
+                        $userID = $data['userID'];
+                        $item = $data['item'];
+                        if (isset($data['listID'])) {
+                            $listID = $data['listID'];
+                            $this->shoppingListModel->insertListItem($listID, $item['name'], $item['count'], $item['checked']);
+                        } else if (isset($data['listName'])) {
+                            $listName = $data['listName'];
+                            $listID = $this->shoppingListModel->addShoppingList($userID, $listName, 0);
+                            $this->shoppingListModel->insertListItem($listID, $item['name'], $item['count'], $item['checked']);
+                        }
+                        echo json_encode(['success' => true]);
                         break;
                 }
             }
@@ -52,6 +61,12 @@ class ShoppingListController {
                     $items = $this->shoppingListModel->getListItems($listID);
                     header('Content-Type: application/json');
                     echo json_encode($items);
+                    break;
+                case 'getLists':
+                    $userID = $_GET['userID'];
+                    $lists = $this->shoppingListModel->getLists($userID);
+                    header('Content-Type: application/json');
+                    echo json_encode($lists);
                     break;
             }
         } else {

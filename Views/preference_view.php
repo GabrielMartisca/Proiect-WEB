@@ -1,3 +1,7 @@
+
+<?php
+session_start(); // Start the session at the beginning of your script
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,20 +16,23 @@
         <h1>Preferences Management</h1>
     </header>
     <div id="sideMenu">
-            <br>
-            <a href="../Controllers/userProfile_controller.php">User Profile</a>
-            <a href="../Controllers/preference_controller.php">Preferences Management</a>
-            <a href="../Controllers/shoppinglist_controller.php">Shopping List</a>
-            <a href="../Controllers/foodDatabase_controller.php">Food Database</a>
-            <a href="../Controllers/statistics_controller.php">Statistics</a>
-            <a href="#" id="logoutLink">Logout</a>
-            <form id="logoutForm" action="../public/logout.php" method="post">
-                <input type="hidden" name="logoutbutton" value="1">
-            </form>
-        </div>
-    <button id="menuButton" >
-        &#9776;
-    </button>
+    <br>
+    <a href="../Controllers/userProfile_controller.php">User Profile</a>
+    <a href="../Controllers/preference_controller.php">Preferences Management</a>
+    <a href="../Controllers/shoppinglist_controller.php">Shopping List</a>
+    <a href="../Controllers/foodDatabase_controller.php">Food Database</a>
+    <a href="../Controllers/statistics_controller.php">Statistics</a>
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') : ?>
+        <a href="../Controllers/UserController.php">Admin Page</a>
+    <?php endif; ?>
+    <a href="#" id="logoutLink">Logout</a>
+    <form id="logoutForm" action="../public/logout.php" method="post">
+        <input type="hidden" name="logoutbutton" value="1">
+    </form>
+</div>
+<button id="menuButton">
+    &#9776;
+</button>
     <br>
     <div class="preferenceContainer">
         <a href="#" class="editBox" id="editBox1"> Edit Alergens </a>

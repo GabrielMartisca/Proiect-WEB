@@ -34,17 +34,6 @@ class ShoppingListModel extends ListModel {
         return $stmt->affected_rows > 0;
     }
 
-    public function deleteShoppingList($listID) {
-        $this->deleteListItems($listID); // First, delete all items associated with the list
-
-        $query = "DELETE FROM Lists WHERE listID = ?";
-        $stmt = $this->mysql->prepare($query);
-        $stmt->bind_param("i", $listID);
-        $stmt->execute();
-
-        return $stmt->affected_rows > 0;
-    }
-
     public function getAllShoppingLists() {
         $query = "SELECT * FROM Lists";
         $result = $this->mysql->query($query);
@@ -52,7 +41,6 @@ class ShoppingListModel extends ListModel {
     }
 
     public function insertListItem($listID, $itemName, $count, $checked) {
-        // Check if the item already exists in the Items table
         $query = "SELECT itemID FROM Items WHERE name = ?";
         $stmt = $this->mysql->prepare($query);
         $stmt->bind_param("s", $itemName);
@@ -70,7 +58,6 @@ class ShoppingListModel extends ListModel {
             $itemID = $stmt->insert_id;
         }
 
-        // Insert into ListItems table
         $query = "INSERT INTO ListItems (listID, itemID, count, checked) VALUES (?, ?, ?, ?)";
         $stmt = $this->mysql->prepare($query);
         $stmt->bind_param("iiii", $listID, $itemID, $count, $checked);
@@ -99,5 +86,17 @@ class ShoppingListModel extends ListModel {
         $result = $stmt->get_result();
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public function getLists($userID) {
+        $stmt = $this->mysql->prepare("SELECT * FROM Lists WHERE userID = ?");
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $lists = [];
+        while ($row = $result->fetch_assoc()) {
+            $lists[] = $row;
+        }
+        $stmt->close();
+        return $lists;
+    }
 }
-?>

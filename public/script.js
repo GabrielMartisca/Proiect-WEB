@@ -28,19 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('userID').value = loggedInUserId;
     }
 
-    // Fetch initial random products
     fetchProducts('');
 
-    // Add event listener to the search button
     document.getElementById('searchButton').addEventListener('click', function () {
         const searchQuery = document.getElementById('searchInput').value.trim();
         fetchProducts(searchQuery);
     });
 
-    // Add event listener to the list history button
-    document.getElementById('viewListHistoryButton').addEventListener('click', viewListHistory);
-
-    // Load existing lists
     loadExistingLists();
 });
 
@@ -61,9 +55,8 @@ function getCookie(name) {
 function fetchProducts(query = '') {
     const productsContainer = document.getElementById('productsContainer');
     const spinnerContainer = document.getElementById('spinnerContainer');
-    productsContainer.innerHTML = ''; // Clear the container before adding new products
+    productsContainer.innerHTML = ''; 
 
-    // Show the spinner
     spinnerContainer.style.display = 'flex';
 
     const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${query}&search_simple=1&action=process&json=1&page_size=20`;
@@ -72,18 +65,16 @@ function fetchProducts(query = '') {
         .then(response => response.json())
         .then(data => {
             data.products.forEach(product => {
-                if (product.product_name && product.image_url) { // Only create elements for products with a product_name
+                if (product.product_name && product.image_url) { 
                     const productElement = createProductElement(product);
                     productsContainer.appendChild(productElement);
                 }
             });
 
-            // Hide the spinner
             spinnerContainer.style.display = 'none';
         })
         .catch(error => {
             console.error('Error fetching products:', error);
-            // Hide the spinner even if there's an error
             spinnerContainer.style.display = 'none';
         });
 }
@@ -105,11 +96,11 @@ function createProductElement(product) {
 }
 
 function openListSelectionModal(name) {
-    // Store the product details in a global variable
     window.selectedProduct = { name };
 
-    // Open the modal
     document.getElementById('listSelectionModal').style.display = 'block';
+
+    loadExistingLists();
 }
 
 function closeListSelectionModal() {
@@ -118,11 +109,22 @@ function closeListSelectionModal() {
 
 function loadExistingLists() {
     const userID = document.getElementById('userID').value;
+    console.log('Loading existing lists for user:', userID); 
     fetch(`../Controllers/shoppinglist_controller.php?action=getLists&userID=${userID}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => {
+            console.log('Existing lists:', data);
             const existingListSelect = document.getElementById('existingList');
-            existingListSelect.innerHTML = ''; // Clear existing options
+            existingListSelect.innerHTML = ''; 
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select an existing list';
+            existingListSelect.appendChild(defaultOption);
             data.forEach(list => {
                 const option = document.createElement('option');
                 option.value = list.listID;
@@ -164,6 +166,8 @@ function addProductToList() {
         console.log(data);
         alert(`${name} added to your shopping list.`);
         closeListSelectionModal();
+
+        document.getElementById('newListName').value = '';
     })
     .catch(error => console.error('Error:', error));
 }
@@ -282,25 +286,8 @@ function toggleItems(listID, button) {
     }
 }
 
-function deleteList(listID, button) {
-    fetch('../Controllers/shoppinglist_controller.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ action: 'deleteSingle', listID })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            console.log('List deleted successfully');
-            const listItem = button.parentElement;
-            listItem.remove();
-        } else {
-            console.error('Failed to delete the list');
-        }
-    })
-    .catch(error => console.error('Error:', error));
+function deleteList() {
+    window.location.reload(); 
 }
 
 function openModal() {
@@ -318,3 +305,4 @@ function openNameModal() {
 function closeNameModal() {
     document.getElementById('listNameModal').style.display = 'none';
 }
+

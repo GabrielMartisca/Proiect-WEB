@@ -1,5 +1,6 @@
 <?php
 include '../Models/model.php';
+
 function verifyLogin() {
     session_start();
     $email = $_POST['email'];
@@ -8,10 +9,19 @@ function verifyLogin() {
 
     $userModel = new UserModel();
     $user = $userModel->getUserByEmail($email);
-    $_SESSION['username']=$user['username'];
+
+    if ($user && $user['is_locked'] == 1) {
+        $_SESSION['error'] = "Your account is blocked. Please contact the administrator.";
+        header("Location: ../controllers/login_controller.php");
+        exit();
+    }
+
+    $_SESSION['username'] = $user['username'];
+    $_SESSION['role'] = $user['role'];
+
     if ($user && password_verify($pass, $user['password'])) {
         $username = $user['username'];
-        $userId=(string)$user['userID'];
+        $userId = (string)$user['userID'];
 
         if ($check == "on") {
             if (setcookie("loggedin", $userId, time() + (86400 * 30), "/")) {
@@ -26,7 +36,6 @@ function verifyLogin() {
                 error_log("Failed to set cookie 'loggedindont' with username: $username");
             }
         }
-        //header("Location: ../views/user_profile.php");
         header("Location: ../Controllers/login_controller.php");
         exit();
     } else {
