@@ -36,18 +36,6 @@ function verifyRegister() {
                     throw new Exception('Insertion into users table failed');
                 }
 
-                // Retrieve the userID of the newly inserted user
-                $userID = $userModel->mysql->insert_id;
-
-                // Insert a new row into the preferences table
-                $query = "INSERT INTO preferences (userID) VALUES (?)";
-                $stmt = $userModel->mysql->prepare($query);
-                $stmt->bind_param("i", $userID);
-
-                if (!$stmt->execute()) {
-                    throw new Exception('Insertion into preferences table failed');
-                }
-
                 // Commit the transaction
                 $userModel->mysql->commit();
 
