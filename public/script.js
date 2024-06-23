@@ -28,26 +28,29 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('userID').value = loggedInUserId;
     }
 
-    document.getElementById('editBox1').addEventListener('click', function() {
-        openPreferenceModal('allergens');
-    });
-
-    document.getElementById('editBox2').addEventListener('click', function() {
-        openPreferenceModal('regime');
-    });
-
-    document.getElementById('editBox3').addEventListener('click', function() {
-        openPreferenceModal('favoriteFoods');
+    if (window.location.pathname.includes('foodDatabase_controller.php')) {
+        // Fetch initial random products
+        fetchProducts('');
+        loadExistingLists();
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const searchQuery = document.getElementById('searchInput').value.trim();
+            fetchProducts(searchQuery);
         });
-    // Fetch initial random products
-    fetchProducts('');
+    }
+    if (window.location.pathname.includes('preference_controller.php')){
 
-    document.getElementById('searchButton').addEventListener('click', function () {
-        const searchQuery = document.getElementById('searchInput').value.trim();
-        fetchProducts(searchQuery);
-    });
-
-    loadExistingLists();
+        document.getElementById('editBox1').addEventListener('click', function() {
+            openPreferenceModal('allergens');
+        });
+    
+        document.getElementById('editBox2').addEventListener('click', function() {
+            openPreferenceModal('regime');
+        });
+    
+        document.getElementById('editBox3').addEventListener('click', function() {
+            openPreferenceModal('favoriteFoods');
+            });
+    }
 });
 
 function editPreference(type) {
