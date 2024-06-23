@@ -1,7 +1,4 @@
 
-<?php
-session_start(); // Start the session at the beginning of your script
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +19,9 @@ session_start(); // Start the session at the beginning of your script
         <a href="../Controllers/shoppinglist_controller.php">Shopping List</a>
         <a href="../Controllers/foodDatabase_controller.php">Food Database</a>
         <a href="../Controllers/statistics_controller.php">Statistics</a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin'): ?>
+            <a href="../Controllers/UserController.php">Admin Page</a>
+        <?php endif; ?>
         <a href="#" id="logoutLink">Logout</a>
         <form id="logoutForm" action="../public/logout.php" method="post">
             <input type="hidden" name="logoutbutton" value="1">
@@ -47,12 +47,14 @@ session_start(); // Start the session at the beginning of your script
         <div class="modal-content">
             <span class="close" onclick="closePreferenceModal()">&times;</span>
             <h2>Edit Preference</h2>
-            <input type="hidden" id="userID" value="<?php echo $userID; ?>"> <!-- Set the user ID -->
+            <input type="hidden" id="userID" value="<?php echo $_SESSION['userID']; ?>"> <!-- Set the user ID -->
             <input type="hidden" id="preferenceType" value=""> <!-- Set the preference type -->
             <textarea id="preferenceInput" placeholder="Enter your preference"></textarea>
             <button onclick="savePreference()">Save</button>
         </div>
     </div>
+
     <script src="../public/script.js"></script>
+    
 </body>
 </html>

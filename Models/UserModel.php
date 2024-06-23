@@ -1,7 +1,7 @@
 <?php
 
 class UserModel {
-    private $mysql;
+    public $mysql;
 
     public function __construct() {
         $this->mysql = new mysqli(
@@ -16,6 +16,10 @@ class UserModel {
         }
     }
 
+    public function getConnection(){
+        return $this->mysql;
+    }
+    
     public function getAllUsers() {
         $query = "SELECT * FROM users";
         $result = $this->mysql->query($query);

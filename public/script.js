@@ -28,10 +28,17 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('userID').value = loggedInUserId;
     }
 
-    document.getElementById('editBox1').addEventListener('click', () => editPreference('allergens'));
-    document.getElementById('editBox2').addEventListener('click', () => editPreference('regime'));
-    document.getElementById('editBox3').addEventListener('click', () => editPreference('favoriteFoods'));
+    document.getElementById('editBox1').addEventListener('click', function() {
+        openPreferenceModal('allergens');
+    });
 
+    document.getElementById('editBox2').addEventListener('click', function() {
+        openPreferenceModal('regime');
+    });
+
+    document.getElementById('editBox3').addEventListener('click', function() {
+        openPreferenceModal('favoriteFoods');
+        });
     // Fetch initial random products
     fetchProducts('');
 
@@ -71,34 +78,38 @@ function editPreference(type) {
 function closePreferenceModal() {
     document.getElementById('preferenceModal').style.display = 'none';
 }
-
+function openPreferenceModal(preferenceType) {
+    document.getElementById('preferenceType').value = preferenceType;
+    document.getElementById('preferenceModal').style.display = 'block';
+}
 // Function to save the updated preference
 function savePreference() {
     const userID = document.getElementById('userID').value;
-    const type = document.getElementById('preferenceType').value;
-    const value = document.getElementById('preferenceInput').value;
-    const action = 'update';
+    const preferenceType = document.getElementById('preferenceType').value;
+    const preferenceInput = document.getElementById('preferenceInput').value;
+
+    const data = {
+        userID,
+        [preferenceType]: preferenceInput
+    };
+
     fetch('../Controllers/preference_controller.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-            action: action,
-            userID: userID,
-            [type]: value,
-        }),
+        body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             closePreferenceModal();
-            location.reload();
+            location.reload(); // Reload to show the updated preferences
         } else {
-            alert('Failed to update preference');
+            alert('Error saving preference');
         }
     })
-    .catch(error => console.error('Error updating preference:', error));
+    .catch(error => console.error('Error saving preference:', error));
 }
 
 function getCookie(name) {

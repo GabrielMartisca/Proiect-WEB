@@ -1,13 +1,10 @@
 <?php
 
-include 'model.php';
-
 class PreferenceModel {
     private $db;
 
-    public function __construct() {
-        $userModel = new UserModel();
-        $this->db = $userModel->getConnection();
+    public function __construct($db) {
+        $this->db = $db;
     }
 
     public function getPreferences($userID) {
