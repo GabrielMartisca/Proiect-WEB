@@ -24,6 +24,10 @@ class UserModel {
         return $result->fetch_assoc();
     }
 
+    public function getConnection() {
+        return $this->mysql;
+    }
+
     public function __destruct() {
         $this->mysql->close();
     }
