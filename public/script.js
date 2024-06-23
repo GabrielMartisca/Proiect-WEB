@@ -39,80 +39,84 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (window.location.pathname.includes('preference_controller.php')){
 
-        document.getElementById('editBox1').addEventListener('click', function() {
+        document.getElementById('editBox1').addEventListener('click', function () {
             openPreferenceModal('allergens');
         });
     
-        document.getElementById('editBox2').addEventListener('click', function() {
-            openPreferenceModal('regime');
+        document.getElementById('editBox2').addEventListener('click', function () {
+            openPreferenceModal('regimes');
         });
     
-        document.getElementById('editBox3').addEventListener('click', function() {
-            openPreferenceModal('favoriteFoods');
-            });
+        document.getElementById('editBox3').addEventListener('click', function () {
+            openPreferenceModal('favoriteFood');
+        });
     }
 });
 
-function editPreference(type) {
-    document.getElementById('preferenceType').value = type;
-    const userID = document.getElementById('userID').value;
-    fetch(`../Controllers/preference_controller.php?action=get&userID=${userID}`)
-        .then(response => response.json())
-        .then(data => {
-            let currentPreference = '';
-            switch (type) {
-                case 'allergens':
-                    currentPreference = data.allergens;
-                    break;
-                case 'regime':
-                    currentPreference = data.regime;
-                    break;
-                case 'favoriteFoods':
-                    currentPreference = data.favoriteFoods;
-                    break;
-            }
-            document.getElementById('preferenceInput').value = currentPreference || '';
-            document.getElementById('preferenceModal').style.display = 'block';
-        })
-        .catch(error => console.error('Error fetching preferences:', error));
+function openPreferenceModal(preferenceType) {
+    const preferenceModal = document.getElementById('preferenceModal');
+    const preferenceTypeInput = document.getElementById('preferenceType');
+    preferenceTypeInput.value = preferenceType;
+
+    const allergenOptions = document.getElementById('allergenOptions');
+    const regimeOptions = document.getElementById('regimeOptions');
+    const favoriteFoodOption = document.getElementById('favoriteFoodOption');
+
+    allergenOptions.style.display = 'none';
+    regimeOptions.style.display = 'none';
+    favoriteFoodOption.style.display = 'none';
+
+    if (preferenceType === 'allergens') {
+        allergenOptions.style.display = 'block';
+    } else if (preferenceType === 'regimes') {
+        regimeOptions.style.display = 'block';
+    } else if (preferenceType === 'favoriteFood') {
+        favoriteFoodOption.style.display = 'block';
+    }
+
+    preferenceModal.style.display = 'block';
 }
 
-// Function to close the preference modal
+// Close the modal
 function closePreferenceModal() {
     document.getElementById('preferenceModal').style.display = 'none';
 }
-function openPreferenceModal(preferenceType) {
-    document.getElementById('preferenceType').value = preferenceType;
-    document.getElementById('preferenceModal').style.display = 'block';
-}
-// Function to save the updated preference
-function savePreference() {
+
+// Save the preferences
+function savePreferences() {
     const userID = document.getElementById('userID').value;
     const preferenceType = document.getElementById('preferenceType').value;
-    const preferenceInput = document.getElementById('preferenceInput').value;
 
-    const data = {
-        userID,
-        [preferenceType]: preferenceInput
-    };
+    let data = new FormData();
+    data.append('userID', userID);
 
-    fetch('../Controllers/preference_controller.php', {
+    if (preferenceType === 'allergens') {
+        const checkboxes = document.querySelectorAll('input[name="allergens[]"]:checked');
+        const allergens = Array.from(checkboxes).map(cb => cb.value);
+        data.append('action', 'updateAllergens');
+        allergens.forEach(allergen => data.append('allergens[]', allergen));
+    } else if (preferenceType === 'regimes') {
+        const checkboxes = document.querySelectorAll('input[name="regimes[]"]:checked');
+        const regimes = Array.from(checkboxes).map(cb => cb.value);
+        data.append('action', 'updateRegimes');
+        regimes.forEach(regime => data.append('regimes[]', regime));
+    } else if (preferenceType === 'favoriteFood') {
+        const favoriteFood = document.getElementById('favoriteFood').value;
+        data.append('action', 'updateFavoriteFood');
+        data.append('favoriteFood', favoriteFood);
+    }
+
+    fetch('preference_controller.php', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
+        body: data
+    }).then(response => {
+        if (response.ok) {
             closePreferenceModal();
-            location.reload(); // Reload to show the updated preferences
+            location.reload();
         } else {
-            alert('Error saving preference');
+            console.error('Failed to save preferences');
         }
-    })
-    .catch(error => console.error('Error saving preference:', error));
+    });
 }
 
 function getCookie(name) {

@@ -1,7 +1,7 @@
 <?php
 
 include '../Models/preference_model.php';
-include '../Models/userModel.php'; // Ensure this includes the UserModel
+include '../Models/userModel.php';
 
 class PreferenceController {
     private $preferenceModel;
@@ -21,16 +21,27 @@ class PreferenceController {
         $userID = $_SESSION['userID'];
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $preferences = [
-                'allergens' => $_POST['allergens'],
-                'regime' => $_POST['regime'],
-                'favoriteFoods' => $_POST['favoriteFoods']
-            ];
-            $this->preferenceModel->updatePreferences($userID, $preferences);
+            $action = $_POST['action'];
+            switch ($action) {
+                case 'updateAllergens':
+                    $allergens = isset($_POST['allergens']) ? $_POST['allergens'] : [];
+                    $this->preferenceModel->updateAllergens($userID, $allergens);
+                    break;
+                case 'updateRegimes':
+                    $regimes = isset($_POST['regimes']) ? $_POST['regimes'] : [];
+                    $this->preferenceModel->updateRegimes($userID, $regimes);
+                    break;
+                case 'updateFavoriteFood':
+                    $favoriteFood = $_POST['favoriteFood'];
+                    $this->preferenceModel->updateFavoriteFood($userID, $favoriteFood);
+                    break;
+            }
             header('Location: preference_controller.php');
             exit();
         } else {
-            $preferences = $this->preferenceModel->getPreferences($userID);
+            $allergens = $this->preferenceModel->getAllergens($userID);
+            $regimes = $this->preferenceModel->getRegimes($userID);
+            $favoriteFood = $this->preferenceModel->getFavoriteFood($userID);
             include '../Views/preference_view.php';
         }
     }
