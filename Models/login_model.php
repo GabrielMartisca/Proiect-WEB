@@ -20,6 +20,7 @@ function verifyLogin() {
     $_SESSION['role'] = $user['role'];
 
     if ($user && password_verify($pass, $user['password'])) {
+        $_SESSION['userID'] = $user['userID'];
         $username = $user['username'];
         $userId = (string)$user['userID'];
 

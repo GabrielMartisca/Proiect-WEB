@@ -401,17 +401,17 @@ header {
     margin: 10px;
     padding: 20px;
     text-align: center;
-    width: 200px; /* Fixed width */
+    width: 200px; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 350px; /* Fixed height for uniformity */
-    box-sizing: border-box; /* Include padding and border in height */
+    height: 350px;
+    box-sizing: border-box; 
 }
 
 .product img {
     max-width: 100%;
-    max-height: 150px; /* Fixed height for images */
+    max-height: 150px; 
     object-fit: cover;
     margin-bottom: 10px;
 }
@@ -419,14 +419,13 @@ header {
 .product h2 {
     font-size: 16px;
     margin: 10px 0;
-    height: 50px; /* Fixed height for titles */
-    overflow: hidden; /* Hide overflow if title is too long */
+    height: 50px;
+    overflow: hidden;
 }
-
 .product p {
     font-size: 18px;
     margin: 10px 0;
-    flex-grow: 1; /* Allow price to take remaining space */
+    flex-grow: 1; 
 }
 
 .product button {
@@ -437,9 +436,9 @@ header {
     cursor: pointer;
     font-size: 16px;
     padding: 10px 20px;
-    margin-top: auto; /* Align the button to the bottom */
-    width: 100%; /* Make the button full width */
-    box-sizing: border-box; /* Include padding in the width */
+    margin-top: auto; 
+    width: 100%; 
+    box-sizing: border-box; 
     transition: background-color 0.3s ease;
 }
 
@@ -578,7 +577,7 @@ footer {
     background-color: #c0392b;
 }
 
-/* Modal styles */
+
 .modal {
     display: none;
     position: fixed;
@@ -603,9 +602,8 @@ footer {
     position: relative;
 }
 
-/* Specific styles for list history modal */
 #listHistoryModal .modal-content {
-    max-width: 700px; /* Increased max-width for list history modal */
+    max-width: 700px; 
 }
 
 .close {
@@ -652,7 +650,6 @@ footer {
     background-color: #c0392b;
 }
 
-/* Add styles for the input and submit button in the modal */
 #listNameModal input[type="text"] {
     padding: 10px 15px;
     border: 1px solid #ccc;
@@ -677,7 +674,6 @@ footer {
     background-color: black;
 }
 
-/* Center the modal content */
 #listNameModal .modal-content {
     display: flex;
     flex-direction: column;
@@ -720,17 +716,15 @@ footer {
     background-color: black;
 }
 
-/* Loading spinner styles */
 .spinner-container {
     display: none;
     justify-content: center;
     align-items: center;
-    height: 200px; /* Adjust as needed */
+    height: 200px;
 }
-
 .spinner {
-    border: 8px solid #f3f3f3; /* Light grey */
-    border-top: 8px solid #333; /* Darker grey */
+    border: 8px solid #f3f3f3; 
+    border-top: 8px solid #333; 
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -742,32 +736,29 @@ footer {
     100% { transform: rotate(360deg); }
 }
 
-/* Modal styles */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    backdrop-filter: blur(5px); /* Blur background */
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.4); 
+    backdrop-filter: blur(5px); 
 }
 
-/* Modal content box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* Shadow */
+    width: 80%; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
 }
 
-/* Close button */
 .close {
     color: #aaa;
     float: right;
@@ -782,13 +773,11 @@ footer {
     cursor: pointer;
 }
 
-/* Modal header */
 .modal-content h2 {
     font-size: 24px;
     margin-bottom: 20px;
 }
 
-/* Form labels */
 .modal-content label {
     font-weight: bold;
     display: block;
@@ -796,7 +785,6 @@ footer {
     margin-bottom: 5px;
 }
 
-/* Input fields */
 .modal-content input[type="text"],
 .modal-content select {
     width: 100%;
@@ -808,7 +796,6 @@ footer {
     font-size: 16px;
 }
 
-/* Action button */
 .actionButton {
     background-color: #333;
     color: white;
@@ -822,4 +809,21 @@ footer {
 
 .actionButton:hover {
     background-color: black;
+}
+.image-container {
+    text-align: center;
+    margin-right: 10%;
+    margin-top: 10%;
+}
+
+.image-container img {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.image-container form {
+    margin-top: 10px;
 }

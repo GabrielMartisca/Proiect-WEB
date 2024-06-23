@@ -1,5 +1,7 @@
 <?php
-session_start(); 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +12,6 @@ session_start();
     <title>User Profile</title>
     <link rel="stylesheet" href="../public/styles.css">
     <link rel="icon" type="image/x-icon" href="../public/logo.png">
-
 </head>
 
 <body class="shoplist">
@@ -33,8 +34,8 @@ session_start();
         </form>
     </div>
     <button id="menuButton">
-            &#9776;
-        </button>
+        &#9776;
+    </button>
     <br>
     <div class="container2">
         <div class="profilePreference">
@@ -47,9 +48,12 @@ session_start();
         </div>
 
         <div class="image-container">
-            <img src="https://static.wikia.nocookie.net/d92f8304-34eb-4769-b050-47c68421cd9b/scale-to-width/370"
+            <img src="<?php echo isset($_SESSION['profile_picture']) ? $_SESSION['profile_picture'] : 'https://static.wikia.nocookie.net/d92f8304-34eb-4769-b050-47c68421cd9b/scale-to-width/370'; ?>"
                 alt="Circular Image">
-            <button>Edit Profile</button>
+            <form action="../Controllers/userProfile_controller.php?action=uploadProfilePicture" method="post" enctype="multipart/form-data">
+                <input type="file" name="profile_picture" required>
+                <button type="submit">Upload</button>
+            </form>
         </div>
     </div>
 
