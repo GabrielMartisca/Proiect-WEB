@@ -15,7 +15,6 @@ class ShoppingListModel extends ListModel {
     }
 
     public function addItemToList($listID, $itemName, $count, $checked) {
-        // Check if the item already exists in the items table
         $stmt = $this->mysql->prepare("SELECT itemID FROM items WHERE name = ?");
         $stmt->bind_param("s", $itemName);
         $stmt->execute();
@@ -25,7 +24,6 @@ class ShoppingListModel extends ListModel {
             $row = $result->fetch_assoc();
             $itemID = $row['itemID'];
         } else {
-            // Insert the new item into the items table
             $stmt = $this->mysql->prepare("INSERT INTO items (name) VALUES (?)");
             $stmt->bind_param("s", $itemName);
             $stmt->execute();
@@ -34,7 +32,6 @@ class ShoppingListModel extends ListModel {
 
         $stmt->close();
 
-        // Add the item to the list
         $stmt = $this->mysql->prepare("INSERT INTO listitems (listID, itemID, count, checked) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("iiii", $listID, $itemID, $count, $checked);
         $stmt->execute();
@@ -83,7 +80,7 @@ class ShoppingListModel extends ListModel {
     }
 
     public function getLists($userID) {
-        $stmt = $this->mysql->prepare("SELECT listID, listName FROM lists WHERE userID = ?");
+        $stmt = $this->mysql->prepare("SELECT * FROM lists WHERE userID = ?");
         $stmt->bind_param("i", $userID);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -92,6 +89,8 @@ class ShoppingListModel extends ListModel {
             $lists[] = $row;
         }
         $stmt->close();
+        error_log("Fetched lists: " . print_r($lists, true));
         return $lists;
     }
+    
 }
