@@ -51,7 +51,41 @@ document.addEventListener('DOMContentLoaded', function () {
             openPreferenceModal('favoriteFood');
         });
     }
+    if (window.location.pathname.includes('statistics_controller.php')){ // --------- vvvvv statistics vvvvvvvv-------
+
+        fetchStatistics();
+
+        document.getElementById('exportCSV').addEventListener('click', function () {
+            window.location.href = '../Controllers/statistics_controller.php?action=exportCSV';
+        });
+    }
 });
+
+
+function fetchStatistics() {
+    fetch('../Controllers/statistics_controller.php?action=getStatistics')
+        .then(response => response.json())
+        .then(data => {
+            const favoriteFoods = document.getElementById('favoriteFoods');
+            const commonAllergens = document.getElementById('commonAllergens');
+            const commonDiets = document.getElementById('commonDiets');
+            const boughtItems = document.getElementById('boughtItems');
+
+            populateList(favoriteFoods, data.favoriteFoods, 'favoriteFood');
+            populateList(commonAllergens, data.commonAllergens, 'allergen');
+            populateList(commonDiets, data.commonDiets, 'regime');
+            populateList(boughtItems, data.boughtItems, 'name');
+        });
+}
+
+function populateList(container, items, key) {
+    container.innerHTML = '';
+    items.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item[key]} (${item.count})`;
+        container.appendChild(li);
+    });
+} // --------- ^^^^ statistics ^^^^^^^^^^^-------
 
 function openPreferenceModal(preferenceType) {
     const preferenceModal = document.getElementById('preferenceModal');

@@ -39,64 +39,25 @@ session_start(); // Start the session at the beginning of your script
             <div class="stats-container">
                 <div class="stats-item">
                     <h3>Top 3 Favorite Foods</h3>
-                    <ul>
-                        <li>Pizza - 25%</li>
-                        <li>Burgers - 20%</li>
-                        <li>Pasta - 15%</li>
-                    </ul>
+                    <ul id="favoriteFoods"></ul>
                 </div>
                 <div class="stats-item">
-                    <h3>Most Popular Cuisines</h3>
-                    <ul>
-                        <li>Italian - 40%</li>
-                        <li>American - 30%</li>
-                        <li>Mexican - 20%</li>
-                    </ul>
+                    <h3>Top 3 Most common allergens</h3>
+                    <ul id="commonAllergens"></ul>
                 </div>
                 <div class="stats-item">
-                    <h3>Favorite Desserts</h3>
-                    <ul>
-                        <li>Ice Cream - 35%</li>
-                        <li>Cake - 25%</li>
-                        <li>Cookies - 20%</li>
-                    </ul>
+                    <h3>Top 3 most common diets</h3>
+                    <ul id="commonDiets"></ul>
                 </div>
                 <div class="stats-item">
                     <h3>Most Bought Food Items</h3>
-                    <ul>
-                        <li>Bread - 35%</li>
-                        <li>Rice - 25%</li>
-                        <li>Milk - 25%</li>
-                    </ul>
+                    <ul id="boughtItems"></ul>
                 </div>
-                <div class="stats-item">
-                    <h3>Most Bought Vegan Food Items</h3>
-                    <ul>
-                        <li>Tofu - 45%</li>
-                        <li>Plant Based Milk - 40%</li>
-                        <li>Vegetables - 10%</li>
-                    </ul>
-                </div>
-                <div class="stats-item">
-                    <h3>Most Bought Protein-Rich Foods</h3>
-                    <ul>
-                        <li>Chicken Breast - 50%</li>
-                        <li>Eggs - 30%</li>
-                        <li>Salmon - 15%</li>
-                    </ul>
-                </div>
-
             </div>
+            <button id="exportCSV">Export as CSV</button>
         </div>
     </main>
     <script src="../public/script.js"></script>
-    <script>
-        document.getElementById('logoutLink').addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('logoutForm').submit();
-        });
-    </script>
-
 </body>
 
 </html>
