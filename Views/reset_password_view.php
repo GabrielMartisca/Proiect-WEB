@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"])) {
+    header("Location: ../Controllers/userProfile_controller.php");
+    exit();
+}
 
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
 unset($_SESSION['error']);

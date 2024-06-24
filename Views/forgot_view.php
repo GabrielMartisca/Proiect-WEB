@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"])) {
-    header("Location: user_profile.php");
+    header("Location: ../Controllers/userProfile_controller.php");
     exit();
 }
 

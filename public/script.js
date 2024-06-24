@@ -284,7 +284,6 @@ function addProductToList() {
     .then(response => response.text())
     .then(data => {
         console.log(data);
-        alert(`${name} added to your shopping list.`);
         closeListSelectionModal();
 
         document.getElementById('newListName').value = '';

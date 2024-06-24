@@ -2,6 +2,11 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+ 
+if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
+    header("Location: ../Controllers/login_controller.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

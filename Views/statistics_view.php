@@ -1,5 +1,9 @@
 <?php
-session_start(); // Start the session at the beginning of your script
+session_start(); 
+if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
+    header("Location: ../Controllers/login_controller.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

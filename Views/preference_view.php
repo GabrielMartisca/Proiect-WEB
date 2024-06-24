@@ -1,3 +1,9 @@
+<?php
+if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
+    header("Location: ../Controllers/login_controller.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

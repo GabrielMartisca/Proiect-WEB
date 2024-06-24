@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"])) {
+    header("Location: ../Controllers/userProfile_controller.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
