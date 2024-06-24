@@ -26,8 +26,14 @@ class UserProfileController {
     }
 
     private function viewProfile() {
-        $userProfile = $this->model->getUserById($_SESSION['userID']);
+        $userID = $_SESSION['userID'];
+        $userProfile = $this->model->getUserById($userID);
         $_SESSION['profile_picture'] = $userProfile['profile_picture'];
+
+        $allergens = $this->model->getUserAllergens($userID);
+        $regimes = $this->model->getUserRegimes($userID);
+        $favoriteFoods = $this->model->getUserFavoriteFoods($userID);
+
         include '../Views/userProfile_view.php';
     }
 
@@ -47,7 +53,6 @@ class UserProfileController {
             echo "File is not an image.";
             $uploadOk = 0;
         }
-
 
         if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";

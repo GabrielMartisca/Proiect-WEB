@@ -73,10 +73,13 @@ font-family: 'Bree Serif', serif;
 
 .profileBox {
     background-color: whitesmoke;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
     width: 80%;
     height: 20%;
     margin-bottom: auto;
+    overflow: auto; /* Added to handle overflow */
+    padding: 10px; /* Added to provide some padding */
+    box-sizing: border-box; /* Ensures padding does not affect the width/height */
 }
 
 
@@ -810,10 +813,20 @@ footer {
 .actionButton:hover {
     background-color: black;
 }
+
 .image-container {
     text-align: center;
+    position: absolute;
     margin-right: 10%;
     margin-top: 10%;
+}
+
+.image-container .username {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
 }
 
 .image-container img {

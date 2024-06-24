@@ -11,6 +11,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" href="../public/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../public/logo.png">
 </head>
 
@@ -39,15 +40,44 @@ if (session_status() == PHP_SESSION_NONE) {
     <br>
     <div class="container2">
         <div class="profilePreference">
-            <div>Alergens</div>
-            <div class="profileBox">No current Allergens</div>
+            <div>Allergens</div>
+            <div class="profileBox">
+                <?php
+                if (!empty($allergens)) {
+                    foreach ($allergens as $allergen) {
+                        echo $allergen['allergen'] . "<br>";
+                    }
+                } else {
+                    echo "No current Allergens";
+                }
+                ?>
+            </div>
             <div>Regime</div>
-            <div class="profileBox">No current Regime</div>
-            <div>Favorite Foods</div>
-            <div class="profileBox">No current Favorite Foods</div>
+            <div class="profileBox">
+                <?php
+                if (!empty($regimes)) {
+                    foreach ($regimes as $regime) {
+                        echo $regime['regime'] . "<br>";
+                    }
+                } else {
+                    echo "No current Regime";
+                }
+                ?>
+            </div>
+            <div>Favorite Food</div>
+            <div class="profileBox">
+                <?php
+                if (!empty($favoriteFoods)) {
+                    echo $favoriteFoods['favoriteFood'];
+                } else {
+                    echo "No current Favorite Food";
+                }
+                ?>
+            </div>
         </div>
 
         <div class="image-container">
+            <span class="username"><?php echo $_SESSION['username']; ?></span>
             <img src="<?php echo isset($_SESSION['profile_picture']) ? $_SESSION['profile_picture'] : 'https://static.wikia.nocookie.net/d92f8304-34eb-4769-b050-47c68421cd9b/scale-to-width/370'; ?>"
                 alt="Circular Image">
             <form action="../Controllers/userProfile_controller.php?action=uploadProfilePicture" method="post" enctype="multipart/form-data">
@@ -67,3 +97,8 @@ if (session_status() == PHP_SESSION_NONE) {
 </body>
 
 </html>
+<?php
+if(!isset($_COOKIE["loggedin"])&&!isset($_COOKIE["loggedindont"])){
+	header("Location:../Controllers/login_controller.php");
+}
+?>
