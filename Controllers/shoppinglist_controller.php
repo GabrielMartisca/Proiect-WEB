@@ -2,14 +2,17 @@
 
 include '../Models/shoppinglist_model.php';
 
-class ShoppingListController {
+class ShoppingListController
+{
     private $shoppingListModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->shoppingListModel = new ShoppingListModel();
     }
 
-    public function handleRequest() {
+    public function handleRequest()
+    {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $data = json_decode(file_get_contents('php://input'), true);
             if (isset($data['action'])) {
@@ -30,7 +33,11 @@ class ShoppingListController {
                         $userID = $data['userID'];
                         $this->shoppingListModel->deleteShoppingListsByUser($userID);
                         break;
-                  
+                    case 'deleteSingle':
+                        $listID = $data['listID'];
+                        $result = $this->shoppingListModel->deleteShoppingList($listID);
+                        echo json_encode(['success' => $result]);
+                        break;
                     case 'addItem':
                         $userID = $data['userID'];
                         $item = $data['item'];

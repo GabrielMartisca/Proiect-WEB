@@ -15,8 +15,21 @@ class ShoppingListModel extends ListModel {
             return false;
         }
     }
+    public function deleteShoppingList($listID) {
+        $this->deleteListItems($listID); // First, delete all items associated with the list
 
+        $query = "DELETE FROM Lists WHERE listID = ?";
+        $stmt = $this->mysql->prepare($query);
+        $stmt->bind_param("i", $listID);
+        $stmt->execute();
+
+        return $stmt->affected_rows > 0;
+    }
     public function deleteShoppingListsByUser($userID) {
+        $query = "SELECT listID FROM Lists WHERE userID = ?";
+        $stmt = $this->mysql->prepare($query);
+        $stmt->bind_param("i", $userID);
+        $stmt->execute();
         $query = "DELETE FROM Lists WHERE userID = ?";
         $stmt = $this->mysql->prepare($query);
         $stmt->bind_param("i", $userID);

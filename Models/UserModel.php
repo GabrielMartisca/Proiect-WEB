@@ -1,5 +1,5 @@
 <?php
-
+include '../Models/shoppinglist_model.php';
 class UserModel {
     public $mysql;
 
@@ -34,7 +34,7 @@ class UserModel {
         $result = $stmt->get_result();
         return $result->fetch_assoc();
     }
-
+    
     public function addUser($username, $email, $password, $role) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $query = "INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)";
@@ -52,11 +52,55 @@ class UserModel {
     }
 
     public function deleteUser($userID) {
-        $query = "DELETE FROM users WHERE userID = ?";
-        $stmt = $this->mysql->prepare($query);
-        $stmt->bind_param("i", $userID);
-        $stmt->execute();
+        $shoppingListModel = new ShoppingListModel();
+    
+        $this->mysql->begin_transaction();
+    
+        try {
+            // Delete user allergens
+            $query = "DELETE FROM user_allergens WHERE userID = ?";
+            $stmt = $this->mysql->prepare($query);
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+    
+            // Delete user regimes
+            $query = "DELETE FROM user_regimes WHERE userID = ?";
+            $stmt = $this->mysql->prepare($query);
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+    
+            // Delete user favorite food
+            $query = "DELETE FROM user_favorite_food WHERE userID = ?";
+            $stmt = $this->mysql->prepare($query);
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+    
+            // Find and delete all lists associated with the user
+            $query = "SELECT listID FROM lists WHERE userID = ?";
+            $stmt = $this->mysql->prepare($query);
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+    
+            while ($row = $result->fetch_assoc()) {
+                $shoppingListModel->deleteShoppingList($row['listID']);
+            }
+    
+            // Delete the user
+            $query = "DELETE FROM users WHERE userID = ?";
+            $stmt = $this->mysql->prepare($query);
+            $stmt->bind_param("i", $userID);
+            $stmt->execute();
+    
+            $this->mysql->commit();
+            return $stmt->affected_rows > 0;
+        } catch (mysqli_sql_exception $exception) {
+            $this->mysql->rollback();
+            throw $exception;
+        }
     }
+    
+    
 
     public function resetPassword($userID, $password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);

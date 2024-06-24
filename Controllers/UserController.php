@@ -92,9 +92,12 @@ class UserController {
     }
 
     private function deleteUser($userID) {
-        $this->model->deleteUser($userID);
-        echo json_encode(['success' => true]);
+        error_log("Attempting to delete user with ID: $userID"); 
+        $result = $this->model->deleteUser($userID);
+        header('Content-Type: application/json');
+        echo json_encode(['success' => $result]);
     }
+
 
     private function banUser($userID) {
         $this->model->updateUserLock($userID, 1);

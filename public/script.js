@@ -405,8 +405,28 @@ function toggleItems(listID, button) {
     }
 }
 
-function deleteList() {
+function deleteListRel() {
     window.location.reload(); 
+}
+function deleteList(listID, button) {
+    fetch('../Controllers/shoppinglist_controller.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ action: 'deleteSingle', listID })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('List deleted successfully');
+            const listItem = button.parentElement;
+            listItem.remove();
+        } else {
+            console.error('Failed to delete the list');
+        }
+    })
+    .catch(error => console.error('Error:', error));
 }
 
 function openModal() {
