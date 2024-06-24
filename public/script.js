@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     if (window.location.pathname.includes('foodDatabase_controller.php')) {
-        // Fetch initial random products
         fetchProducts('');
         loadExistingLists();
         document.getElementById('searchButton').addEventListener('click', function () {
@@ -403,7 +402,7 @@ function toggleItems(listID, button) {
     }
 }
 
-function deleteListRel() {
+function deleteListRef() {
     window.location.reload(); 
 }
 function deleteList(listID, button) {

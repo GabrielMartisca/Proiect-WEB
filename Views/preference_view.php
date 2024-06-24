@@ -47,7 +47,7 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
         </div>
     </div>
 
-    <!-- Modal for Editing Preferences -->
+   
     <div id="preferenceModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closePreferenceModal()">&times;</span>
@@ -55,7 +55,7 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
             <input type="hidden" id="userID" value="<?php echo $_SESSION['userID']; ?>"> <!-- Set the user ID -->
             <input type="hidden" id="preferenceType" value=""> <!-- Set the preference type -->
 
-            <!-- Allergen options -->
+            
             <div id="allergenOptions" class="preferenceOptions" style="display: none;">
                 <?php 
                 $allergensList = ['Milk', 'Eggs', 'Fish', 'Crustacean shellfish', 'Tree nuts', 'Peanuts', 'Wheat', 'Soybeans'];
@@ -68,7 +68,7 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
                 <?php endforeach; ?>
             </div>
 
-            <!-- Regime options -->
+        
             <div id="regimeOptions" class="preferenceOptions" style="display: none;">
                 <?php 
                 $regimesList = ['Vegetarian', 'Vegan', 'Keto', 'Paleo', 'Mediterranean'];
@@ -81,7 +81,7 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
                 <?php endforeach; ?>
             </div>
 
-            <!-- Favorite Food option -->
+          
             <div id="favoriteFoodOption" class="preferenceOptions" style="display: none;">
                 <label for="favoriteFood">Favorite Food:</label>
                 <input type="text" id="favoriteFood" name="favoriteFood" value="">

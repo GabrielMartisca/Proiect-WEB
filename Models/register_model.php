@@ -26,7 +26,6 @@ function verifyRegister() {
             $userModel->mysql->begin_transaction();
 
             try {
-                // Insert the new user into the users table
                 $query = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
                 $stmt = $userModel->mysql->prepare($query);
                 $stmt->bind_param("sss", $username, $email, $hashedPass);
@@ -40,7 +39,6 @@ function verifyRegister() {
                 header("Location: ../Controllers/login_controller.php");
                 exit();
             } catch (Exception $e) {
-                // Rollback the transaction in case of an error
                 $userModel->mysql->rollback();
                 $_SESSION['error'] = $e->getMessage();
                 header("Location: ../Controllers/register_controller.php");

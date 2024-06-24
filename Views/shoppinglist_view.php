@@ -43,9 +43,9 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
     <div class="container">
         <div class="shopping-list-container">
             <h1>My Shopping List</h1>
-            <input type="hidden" id="userID" value=""> <!-- Dynamically set the user ID -->
+            <input type="hidden" id="userID" value=""> 
             <ul id="shoppingList">
-                <!-- Shopping list items will be rendered here -->
+                
             </ul>
             <div class="add-item">
                 <input type="text" id="itemInput" placeholder="Add new item">
@@ -56,21 +56,21 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
     <div class="action-buttons">
         <button class="actionButton" onclick="finishList()">Finish List</button>
         <button id="viewListHistoryButton" class="actionButton" onclick="viewListHistory()">List History</button>
-        <button class="actionButton" onclick="deleteList()">Delete List</button>
+        <button class="actionButton" onclick="deleteListRef()">Delete List</button>
     </div>
 
-    <!-- Modal for List History -->
+
     <div id="listHistoryModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Shopping List History</h2>
             <ul id="listHistory" class="input-container">
-                <!-- List history will be displayed here -->
+           
             </ul>
         </div>
     </div>
 
-    <!-- Modal for Adding List Name -->
+   
     <div id="listNameModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeNameModal()">&times;</span>

@@ -1,6 +1,6 @@
 <?php
 include '../Models/statistics_model.php';
-require_once '../vendor/autoload.php'; // Ensure this path is correct for your setup
+require_once '../vendor/autoload.php'; 
 
 class StatisticsController {
     private $model;
@@ -31,13 +31,13 @@ class StatisticsController {
                     break;
             }
         } else {
-            // Include the view when no action is specified
+           
             include "../Views/statistics_view.php";
         }
     }
 
     private function getStatistics() {
-        header('Content-Type: application/json'); // Set content type to JSON
+        header('Content-Type: application/json'); 
         $data = [
             'favoriteFoods' => $this->model->getTopFavoriteFoods(),
             'commonAllergens' => $this->model->getTopCommonAllergens(),
@@ -45,7 +45,7 @@ class StatisticsController {
             'boughtItems' => $this->model->getTopBoughtItems()
         ];
         echo json_encode($data);
-        exit(); // Ensure no additional content is sent
+        exit(); 
     }
 
     private function exportCSV() {
@@ -78,7 +78,7 @@ class StatisticsController {
         }
 
         fclose($output);
-        exit(); // Ensure no additional content is sent
+        exit(); 
     }
 
     private function exportPDF() {
@@ -109,7 +109,7 @@ class StatisticsController {
             $pdf->Cell(0, 10, $row['name'] . ' (' . $row['count'] . ')', 0, 1);
         }
 
-        $pdf->Output('statistics.pdf', 'D'); // D for download
+        $pdf->Output('statistics.pdf', 'D'); 
         exit();
     }
 }

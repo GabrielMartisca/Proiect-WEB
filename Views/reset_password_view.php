@@ -43,3 +43,4 @@ unset($_SESSION['error']);
     <script src="../public/script.js"></script>
 </body>
 </html>
+

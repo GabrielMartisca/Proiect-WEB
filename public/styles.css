@@ -77,9 +77,9 @@ font-family: 'Bree Serif', serif;
     width: 80%;
     height: 20%;
     margin-bottom: auto;
-    overflow: auto; /* Added to handle overflow */
-    padding: 10px; /* Added to provide some padding */
-    box-sizing: border-box; /* Ensures padding does not affect the width/height */
+    overflow: auto; 
+    padding: 10px; 
+    box-sizing: border-box; 
 }
 
 

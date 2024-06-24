@@ -52,7 +52,7 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Users will be dynamically loaded here -->
+                    
                 </tbody>
             </table>
         </section>
