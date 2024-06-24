@@ -16,7 +16,7 @@ class ShoppingListModel extends ListModel {
         }
     }
     public function deleteShoppingList($listID) {
-        $this->deleteListItems($listID); // First, delete all items associated with the list
+        $this->deleteListItems($listID);
 
         $query = "DELETE FROM Lists WHERE listID = ?";
         $stmt = $this->mysql->prepare($query);

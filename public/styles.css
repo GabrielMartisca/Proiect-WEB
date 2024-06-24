@@ -840,3 +840,26 @@ footer {
 .image-container form {
     margin-top: 10px;
 }
+
+
+button.save {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-family: 'Bree Serif', serif;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px #999;
+    background-color: #FF9800; 
+}
+
+button.save:hover {
+    background-color: #fb8c00;
+}

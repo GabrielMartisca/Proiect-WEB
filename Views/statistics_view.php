@@ -58,8 +58,8 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
                     <ul id="boughtItems"></ul>
                 </div>
             </div>
-            <button id="exportCSV">Export as CSV</button>
-            <button id="exportPDF">Export as PDF</button>
+            <button class="save" id="exportCSV">Export as CSV</button>
+            <button class="save" id="exportPDF">Export as PDF</button>
         </div>
     </main>
     <script src="../public/script.js"></script>

@@ -116,12 +116,10 @@ function openPreferenceModal(preferenceType) {
     preferenceModal.style.display = 'block';
 }
 
-// Close the modal
 function closePreferenceModal() {
     document.getElementById('preferenceModal').style.display = 'none';
 }
 
-// Save the preferences
 function savePreferences() {
     const userID = document.getElementById('userID').value;
     const preferenceType = document.getElementById('preferenceType').value;

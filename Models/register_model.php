@@ -23,7 +23,6 @@ function verifyRegister() {
         } else {
             $hashedPass = password_hash($password, PASSWORD_DEFAULT);
 
-            // Start a transaction
             $userModel->mysql->begin_transaction();
 
             try {
@@ -36,7 +35,6 @@ function verifyRegister() {
                     throw new Exception('Insertion into users table failed');
                 }
 
-                // Commit the transaction
                 $userModel->mysql->commit();
 
                 header("Location: ../Controllers/login_controller.php");

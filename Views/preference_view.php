@@ -87,7 +87,7 @@ if (!(isset($_COOKIE["loggedin"]) || isset($_COOKIE["loggedindont"]))) {
                 <input type="text" id="favoriteFood" name="favoriteFood" value="">
             </div>
 
-            <button onclick="savePreferences()">Save</button>
+            <button class="save" onclick="savePreferences()">Save</button>
         </div>
     </div>
 

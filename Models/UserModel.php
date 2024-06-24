@@ -57,25 +57,21 @@ class UserModel {
         $this->mysql->begin_transaction();
     
         try {
-            // Delete user allergens
             $query = "DELETE FROM user_allergens WHERE userID = ?";
             $stmt = $this->mysql->prepare($query);
             $stmt->bind_param("i", $userID);
             $stmt->execute();
     
-            // Delete user regimes
             $query = "DELETE FROM user_regimes WHERE userID = ?";
             $stmt = $this->mysql->prepare($query);
             $stmt->bind_param("i", $userID);
             $stmt->execute();
     
-            // Delete user favorite food
             $query = "DELETE FROM user_favorite_food WHERE userID = ?";
             $stmt = $this->mysql->prepare($query);
             $stmt->bind_param("i", $userID);
             $stmt->execute();
     
-            // Find and delete all lists associated with the user
             $query = "SELECT listID FROM lists WHERE userID = ?";
             $stmt = $this->mysql->prepare($query);
             $stmt->bind_param("i", $userID);
@@ -86,7 +82,6 @@ class UserModel {
                 $shoppingListModel->deleteShoppingList($row['listID']);
             }
     
-            // Delete the user
             $query = "DELETE FROM users WHERE userID = ?";
             $stmt = $this->mysql->prepare($query);
             $stmt->bind_param("i", $userID);
