@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Cupo Scholarly HTML Report</title>
+
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <script src="https://w3c.github.io/scholarly-html/js/scholarly.min.js"></script>
+</head>
+<body>
+<header>
+    <div class="banner">
+        <img style="width: 100%" src="scholarly-html.svg" width="227" height="50" alt="Scholarly HTML logo">
+    </div>
+    <h1><project>CuPo</project> Raport - Scholarly HTML</h1>
+</header>
+
+<div role="contentinfo">
+    <dl>
+        <dt>Authors</dt>
+        <dd>
+            <a href="https://github.com/GabrielMartisca" target="_blank">Gabriel Mărtişcă</a>,
+            <a href="https://github.com/Soci-Lucian" target="_blank">Soci Lucian</a>
+        </dd>
+    </dl>
+</div>
+<section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <h2>Abstract</h2>
+    <p>
+        Acest document cuprinde aspectele tehnice și interacțiunea cu utilizatorul ale proiectului CuPo pentru
+        <web>Tehnologii Web</web>, realizat în colaborare de
+        <a href="https://github.com/GabrielMartisca" target="_blank">Gabriel Mărtişcă</a> și
+        <a href="https://github.com/Soci-Lucian" target="_blank">Soci Lucian</a> pentru Tehnologii Web (2024).
+        <br><br>
+        <infoiasi><i>Universitatea Alexandru Ioan Cuza din Iași, Facultatea de Informatică</i></infoiasi>
+    </p>
+</section>
+<!-- 1. Introduction -->
+<section id="introduction" role="doc-introduction">
+    <h2>Introducere</h2>
+    <section id="purpose">
+        <h3>Scop</h3>
+        <p>
+            Aplicația Web detaliată în acest document creează un spațiu pentru utilizator în care
+            acesta poate gestiona preferințele culinare, crea și administra liste de cumpărături, și vizualiza statistici bazate pe activitatea sa.
+        </p>
+    </section>
+
+    <section id="intended-audience">
+        <h3>Public țintă</h3>
+        <p>
+            Publicul țintă pentru această aplicație sunt persoanele interesate de o gestionare eficientă a preferințelor alimentare și cumpărăturilor, precum și cei care doresc să aibă acces la statistici detaliate despre obiceiurile lor culinare.
+        </p>
+    </section>
+    <section id="scope">
+        <h3>Viziune</h3>
+        <p>
+            Viziunea proiectului CuPo este de a oferi utilizatorilor o platformă intuitivă și eficientă pentru organizarea preferințelor culinare și a cumpărăturilor, îmbunătățind astfel experiența lor de gătit și cumpărături.
+        </p>
+    </section>
+</section>
+
+<!-- 2. Description -->
+<section id="description" role="doc-introduction">
+    <h2>Descriere</h2>
+    <section id="perspective">
+        <h3>Perspectiva</h3>
+        <p>
+            CuPo este o aplicație web modernă care integrează diverse funcționalități pentru a ajuta utilizatorii să își gestioneze preferințele alimentare și listele de cumpărături. Aplicația folosește date din OpenFoodFacts pentru a oferi utilizatorului varianta de a adauga produse existente in lista de cumparaturi.
+        </p>
+    </section>
+
+    <section id="functions">
+        <h3>Funcțiile Produsului</h3>
+        <p>
+            Mai jos sunt funcționalitățile pe care aplicația CuPo le oferă:
+        <ul>
+            <li>Crearea unui cont și înregistrarea unui utilizator</li>
+            <li>Alegerea preferințelor culinare, dietei și alergiilor</li>
+            <li>Modificarea datelor asociate utilizatorului</li>
+            <li>Crearea și modificarea listelor de cumpărături</li>
+            <li>Accesul la o bază de date largă cu produse diverse</li>
+            <li>Oferirea de statistici în format CSV și PDF</li>
+            <li>Actualizarea în timp real a statisticilor</li>
+        </ul>
+        </p>
+    </section>
+    <section id="operating-environment">
+        <h3>Mediul de operare</h3>
+        <p>
+            Fiind o aplicație web, aceasta va rula pe orice browser modern. Astfel aplicația va putea rula pe toate sistemele de operare ce suportă un browser, cum ar fi: Android, iOS, Windows, Linux, etc.
+        </p>
+    </section>
+    <section id="constraints">
+        <h3>Constrângeri</h3>
+        <p>
+            Aplicația trebuie să fie disponibilă 24/7 și să aibă un timp de răspuns rapid. De asemenea, trebuie să fie sigură, protejând datele utilizatorilor prin criptarea informațiilor sensibile și implementarea măsurilor adecvate de securitate.
+        </p>
+        <p>
+            Alte constrângeri includ compatibilitatea cu API-ul OpenFoodFacts și necesitatea de a gestiona corect eventualele erori de rețea sau server.
+        </p>
+    </section>
+</section>
+
+<!-- 3. External Interface Requirements -->
+<section id="interfaces">
+    <h2>Interfețe externe</h2>
+    <section id="user-interfaces">
+        <h3>Interfața pentru utilizator</h3>
+        <p>
+            Aplicația are o interfață intuitivă și ușor de folosit, cu un meniu lateral care facilitează navigarea între diferitele secțiuni: profilul utilizatorului, editare preferințele culinare, listele de cumpărături, baza de date cu produse și statistici.
+        </p>
+    </section>
+
+    <section id="software-interfaces">
+        <h3>Interfețe software</h3>
+        <p>
+            Aplicația interacționează cu API-ul OpenFoodFacts pentru a prelua informații despre produse. De asemenea, folosește un server SMTP pentru trimiterea e-mailurilor necesare în procesul de resetare a parolei.
+        </p>
+    </section>
+
+    <section id="statistics-api">
+        <h3>Interfața pentru statistici</h3>
+        <p>
+            Utilizatorii pot vizualiza statistici detaliate despre preferințele lor alimentare și activitatea lor pe platformă. Aceste statistici pot fi exportate în format CSV sau PDF pentru o analiză ulterioară.
+        </p>
+    </section>
+</section>
+
+<section id="source-code">
+    <h2>Gestionarea Codului</h2>
+    <p>
+        Pentru gestionarea codului sursă al proiectului s-a folosit <a href="https://github.com" target="_blank">GitHub</a>.
+        Commiturile sunt realizate de ambii membri ai echipei. Pentru că fiecare membru a lucrat la feature-uri diferite,
+        nu a fost necesară folosirea de branch-uri multiple.
+    </p>
+    <p>
+        Codul sursă al proiectului va fi disponibil <a href="https://github.com/GabrielMartisca/Proiect-WEB" target="_blank">aici</a>
+        atunci când va fi făcut public.
+    </p>
+</section>
+
+<section id="security">
+    <h2>Securitate</h2>
+    <section>
+        <h3>Politica de Securitate</h3>
+        <p>
+            Securitatea este o componentă esențială a aplicației CuPo. Toate datele utilizatorilor sunt stocate în siguranță, iar parolele sunt criptate folosind algoritmi puternici.
+        </p>
+    </section>
+</section>
+
+<!-- 4. System Features -->
+<section id="system-features">
+    <h2>Funcționalități</h2>
+    <section id="login">
+        <h3>Autentificarea</h3>
+        <p>
+            Autentificarea utilizatorului se realizează în pagina dedicată acestei operații și presupune
+            completarea câmpurilor necesare (nume de utilizator sau email, parolă), urmând ca apoi utilizatorul
+            să apese pe butonul "login" și, în cazul în care datele sunt corecte, acesta să fie redirecționat
+            pe pagina principală (Home). Desigur, autentificarea necesită existența unui cont de utilizator.
+        </p>
+    </section>
+    <section id="register">
+        <h3>Înregistrarea</h3>
+        <p>
+            Această operație presupune crearea unui nou cont de utilizator. Utilizatorul completează
+            câmpurile necesare (nume de utilizator, email, parolă, confirmare parolă), apasă pe butonul
+            "register" și, în cazul în care informațiile sunt valide (nume de utilizator este nou,
+            email respectă formatul standard, parolă corespunde), utilizatorul este redirecționat pe pagina
+            de login.
+        </p>
+    </section>
+
+    <section id="shopping-lists">
+        <h3>Creare și Editare Liste de Cumpărături</h3>
+        <p>
+            Utilizatorii pot crea noi liste de cumpărături și pot adăuga sau elimina produse din acestea. Listele pot fi salvate și accesate ulterior, iar istoricul listelor este păstrat pentru referință.
+        </p>
+    </section>
+
+    <section id="preference-management">
+        <h3>Editarea Preferințelor Culinare</h3>
+        <p>
+            Utilizatorii pot modifica preferințele culinare, regimul alimentar și alergiile. Aceste preferințe vor fi afisate pe pagina de profil.
+        </p>
+    </section>
+    <section id="statistici">
+        <h3>Statistici</h3>
+        <p>
+            Aplicația oferă accesul la statistici generate dupa baza de date si permite exportarea acestora in format CSV si PDF.
+        </p>
+    </section>
+
+    <!-- 5. UI/UX -->
+    <section id="user-interface" role="doc-introduction">
+        <h2>Interfață și Motivație</h2>
+        <p>
+            Interfața utilizatorului este concepută pentru a fi intuitivă și ușor de utilizat. Meniul lateral asigură acces rapid la toate funcționalitățile aplicației, iar designul responsive asigură o experiență plăcută pe orice dispozitiv.
+        </p>
+    </section>
+
+    <section id="admin-page">
+        <h2>Pagina Administratorului</h2>
+        <section>
+            <p>
+                Administratorii au acces la o pagină specială unde pot gestiona utilizatorii aplicației. Aceștia pot bloca, edita, șterge sau adăuga noi utilizatori. De asemenea, au acces la statistici detaliate despre activitatea utilizatorilor.
+            </p>
+        </section>
+    </section>
+</section>
+
+<section id="other-resources">
+    <h2>Resurse Principale</h2>
+    <ul>
+        <li><a href="https://www.w3schools.com/" target="_blank">w3schools</a></li>
+        <li><a href="https://world.openfoodfacts.org" target="_blank">OpenFoodFacts API</a></li>
+    </ul>
+</section>
+
+</body>
+</html>
