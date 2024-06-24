@@ -23,11 +23,6 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('logoutForm').submit();
     });
 
-    const loggedInUserId = getCookie("loggedin") || getCookie("loggedindont");
-    if (loggedInUserId) {
-        document.getElementById('userID').value = loggedInUserId;
-    }
-
     if (window.location.pathname.includes('foodDatabase_controller.php')) {
         // Fetch initial random products
         fetchProducts('');
@@ -37,8 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             fetchProducts(searchQuery);
         });
     }
-    if (window.location.pathname.includes('preference_controller.php')){
-
+    if (window.location.pathname.includes('preference_controller.php')) {
         document.getElementById('editBox1').addEventListener('click', function () {
             openPreferenceModal('allergens');
         });
@@ -51,16 +45,22 @@ document.addEventListener('DOMContentLoaded', function () {
             openPreferenceModal('favoriteFood');
         });
     }
-    if (window.location.pathname.includes('statistics_controller.php')){ // --------- vvvvv statistics vvvvvvvv-------
-
+    if (window.location.pathname.includes('statistics_controller.php')) {
         fetchStatistics();
 
         document.getElementById('exportCSV').addEventListener('click', function () {
             window.location.href = '../Controllers/statistics_controller.php?action=exportCSV';
         });
+
+        document.getElementById('exportPDF').addEventListener('click', function () {
+            window.location.href = '../Controllers/statistics_controller.php?action=exportPDF';
+        });
+    }
+    const loggedInUserId = getCookie("loggedin") || getCookie("loggedindont");
+    if (loggedInUserId) {
+        document.getElementById('userID').value = loggedInUserId;
     }
 });
-
 
 function fetchStatistics() {
     fetch('../Controllers/statistics_controller.php?action=getStatistics')
@@ -77,7 +77,6 @@ function fetchStatistics() {
             populateList(boughtItems, data.boughtItems, 'name');
         });
 }
-
 function populateList(container, items, key) {
     container.innerHTML = '';
     items.forEach(item => {
@@ -85,8 +84,7 @@ function populateList(container, items, key) {
         li.textContent = `${item[key]} (${item.count})`;
         container.appendChild(li);
     });
-} // --------- ^^^^ statistics ^^^^^^^^^^^-------
-
+}
 function openPreferenceModal(preferenceType) {
     const preferenceModal = document.getElementById('preferenceModal');
     const preferenceTypeInput = document.getElementById('preferenceType');
@@ -102,10 +100,17 @@ function openPreferenceModal(preferenceType) {
 
     if (preferenceType === 'allergens') {
         allergenOptions.style.display = 'block';
+        document.querySelectorAll('input[name="allergens[]"]').forEach(checkbox => {
+            checkbox.checked = userAllergens.includes(checkbox.value);
+        });
     } else if (preferenceType === 'regimes') {
         regimeOptions.style.display = 'block';
+        document.querySelectorAll('input[name="regimes[]"]').forEach(checkbox => {
+            checkbox.checked = userRegimes.includes(checkbox.value);
+        });
     } else if (preferenceType === 'favoriteFood') {
         favoriteFoodOption.style.display = 'block';
+        document.getElementById('favoriteFood').value = userFavoriteFood;
     }
 
     preferenceModal.style.display = 'block';
@@ -420,4 +425,3 @@ function openNameModal() {
 function closeNameModal() {
     document.getElementById('listNameModal').style.display = 'none';
 }
-

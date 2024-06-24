@@ -55,6 +55,7 @@ session_start(); // Start the session at the beginning of your script
                 </div>
             </div>
             <button id="exportCSV">Export as CSV</button>
+            <button id="exportPDF">Export as PDF</button>
         </div>
     </main>
     <script src="../public/script.js"></script>

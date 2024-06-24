@@ -50,42 +50,46 @@
             <input type="hidden" id="preferenceType" value=""> <!-- Set the preference type -->
 
             <!-- Allergen options -->
-            <div id="allergenOptions" class="preferenceOptions">
+            <div id="allergenOptions" class="preferenceOptions" style="display: none;">
                 <?php 
-                $allergens = ['Milk', 'Eggs', 'Fish', 'Crustacean shellfish', 'Tree nuts', 'Peanuts', 'Wheat', 'Soybeans'];
-                foreach ($allergens as $allergen): 
-                    $checked = in_array($allergen, $allergens) ? 'checked' : '';
+                $allergensList = ['Milk', 'Eggs', 'Fish', 'Crustacean shellfish', 'Tree nuts', 'Peanuts', 'Wheat', 'Soybeans'];
+                foreach ($allergensList as $allergen): 
                 ?>
                     <label>
-                        <input type="checkbox" name="allergens[]" value="<?php echo $allergen; ?>" <?php echo $checked; ?>>
+                        <input type="checkbox" name="allergens[]" value="<?php echo $allergen; ?>">
                         <?php echo $allergen; ?>
                     </label>
                 <?php endforeach; ?>
             </div>
 
             <!-- Regime options -->
-            <div id="regimeOptions" class="preferenceOptions">
+            <div id="regimeOptions" class="preferenceOptions" style="display: none;">
                 <?php 
-                $regimes = ['Vegetarian', 'Vegan', 'Keto', 'Paleo', 'Mediterranean'];
-                foreach ($regimes as $regime): 
-                    $checked = in_array($regime, $regimes) ? 'checked' : '';
+                $regimesList = ['Vegetarian', 'Vegan', 'Keto', 'Paleo', 'Mediterranean'];
+                foreach ($regimesList as $regime): 
                 ?>
                     <label>
-                        <input type="checkbox" name="regimes[]" value="<?php echo $regime; ?>" <?php echo $checked; ?>>
+                        <input type="checkbox" name="regimes[]" value="<?php echo $regime; ?>">
                         <?php echo $regime; ?>
                     </label>
                 <?php endforeach; ?>
             </div>
 
             <!-- Favorite Food option -->
-            <div id="favoriteFoodOption" class="preferenceOptions">
+            <div id="favoriteFoodOption" class="preferenceOptions" style="display: none;">
                 <label for="favoriteFood">Favorite Food:</label>
-                <input type="text" id="favoriteFood" name="favoriteFood" value="<?php echo htmlspecialchars($favoriteFood); ?>">
+                <input type="text" id="favoriteFood" name="favoriteFood" value="">
             </div>
 
             <button onclick="savePreferences()">Save</button>
         </div>
     </div>
+
+    <script>
+        const userAllergens = <?php echo json_encode($allergens); ?>;
+        const userRegimes = <?php echo json_encode($regimes); ?>;
+        const userFavoriteFood = <?php echo json_encode($favoriteFood); ?>;
+    </script>
     <script src="../public/script.js"></script>
 </body>
 </html>
